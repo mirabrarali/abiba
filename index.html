@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abiba | The Smartest Financial AI Ecosystem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="security.js"></script>
+    <style>
+        :root {
+            --bg-deep: #05070a;
+            --accent-blue: #00d2ff;
+            --accent-purple: #9d50bb;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .brand-font {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        .glass {
+            background: var(--glass-bg);
+            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.5);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #00d2ff 0%, #9d50bb 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-orb {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            filter: drop-shadow(0 0 50px rgba(0, 210, 255, 0.3));
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .nav-link {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: var(--accent-blue);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .custom-cursor {
+            width: 20px;
+            height: 20px;
+            background: var(--accent-blue);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
+        }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    </style>
+</head>
+
+<body class="selection:bg-cyan-500/30">
+
+    <div class="custom-cursor hidden md:block" id="cursor"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-8 py-6">
+        <div class="max-w-7xl mx-auto flex justify-between items-center glass px-8 py-4">
+            <div class="flex items-center space-x-2">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-500 animate-pulse"></div>
+                <span class="brand-font text-2xl font-bold tracking-tighter">ABIBA</span>
+            </div>
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#about"
+                    class="nav-link text-sm uppercase tracking-widest text-gray-400 hover:text-white">About</a>
+                <a href="#features"
+                    class="nav-link text-sm uppercase tracking-widest text-gray-400 hover:text-white">Ecosystem</a>
+                <a href="logs.html"
+                    class="nav-link text-sm uppercase tracking-widest text-gray-400 hover:text-white">Logs</a>
+                <button onclick="window.location.href='chat.html'"
+                    class="glass px-6 py-2 text-sm font-medium hover:bg-white hover:text-black transition-all duration-300">
+                    CHAT WITH ABIBA
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-[100svh] flex flex-col items-center justify-center pt-32 pb-20 px-4 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div
+                class="absolute top-1/4 left-1/4 w-64 md:w-96 h-64 md:h-96 bg-cyan-500/10 rounded-full blur-[80px] md:blur-[120px]">
+            </div>
+            <div
+                class="absolute bottom-1/4 right-1/4 w-64 md:w-96 h-64 md:h-96 bg-purple-500/10 rounded-full blur-[80px] md:blur-[120px]">
+            </div>
+        </div>
+
+        <div class="z-10 text-center max-w-4xl">
+            <span
+                class="inline-block glass px-4 py-1.5 text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase text-cyan-400 mb-6 scroll-reveal">
+                The Future of Financial Intelligence
+            </span>
+            <h1
+                class="text-4xl sm:text-6xl md:text-8xl font-bold tracking-tighter leading-[1.1] md:leading-[0.9] mb-8 scroll-reveal">
+                MEET <span class="gradient-text">ABIBA</span><br class="hidden sm:block">
+                THE NEURO-ENGINE
+            </h1>
+            <p class="text-gray-400 text-base md:text-xl max-w-2xl mx-auto mb-10 leading-relaxed scroll-reveal px-4">
+                Synthesizing massive banking datasets into real-time tactical insights.
+                Abiba isn't just an AI; it's the cognitive core of your financial empire.
+            </p>
+
+            <div class="hero-orb mx-auto mb-12 floating scroll-reveal w-[280px] h-[280px] md:w-[400px] md:h-[400px]">
+                <img src="abiba_neuro_orb_1767173683159.png" alt="Abiba Neuro Engine"
+                    class="w-full h-full object-contain">
+            </div>
+
+            <div
+                class="flex flex-col sm:flex-row gap-4 justify-center items-center scroll-reveal px-4 w-full sm:w-auto">
+                <button onclick="window.location.href='chat.html'"
+                    class="w-full sm:w-auto bg-white text-black px-10 py-4 rounded-full font-bold hover:scale-105 transition-transform text-sm md:text-base">
+                    ENTER ECOSYSTEM
+                </button>
+                <button
+                    class="w-full sm:w-auto glass px-10 py-4 rounded-full font-bold hover:bg-white/10 transition-all text-sm md:text-base">
+                    WATCH SYSTEM DEMO
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-4 relative">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="scroll-reveal">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-8 tracking-tighter">
+                        WHAT IS <span class="gradient-text">ABIBA</span>?
+                    </h2>
+                    <div class="space-y-6 text-gray-400 text-lg leading-relaxed">
+                        <p>
+                            Abiba is a highly scalable, multi-tenant AI ecosystem designed for the world’s most
+                            demanding financial institutions. By connecting directly with core setups like Infosys
+                            Finacle, Abiba bridging the gap between legacy infrastructure and futuristic intelligence.
+                        </p>
+                        <p>
+                            We built Abiba to be the "Master Controller" of banking operations—capable of visualizing
+                            complex NPA trends, automating multi-step validation tasks, and providing secure, actionable
+                            counsel to stakeholders in real-time.
+                        </p>
+                    </div>
+                    <div class="mt-10 grid grid-cols-2 gap-6">
+                        <div class="p-6 glass">
+                            <i data-lucide="shield-check" class="text-cyan-400 mb-4 w-8 h-8"></i>
+                            <h3 class="font-bold mb-2">Secure-First</h3>
+                            <p class="text-sm text-gray-500">Designed for on-prem banking grade security.</p>
+                        </div>
+                        <div class="p-6 glass">
+                            <i data-lucide="zap" class="text-purple-400 mb-4 w-8 h-8"></i>
+                            <h3 class="font-bold mb-2">Ultra-Fast</h3>
+                            <p class="text-sm text-gray-500">Sub-second inference for real-time banking.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative scroll-reveal mt-12 md:mt-0">
+                    <div class="glass p-8 aspect-square flex items-center justify-center overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent"></div>
+                        <div class="text-center">
+                            <div
+                                class="w-48 h-48 bg-cyan-500/20 rounded-full blur-3xl absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                            </div>
+                            <i data-lucide="cpu"
+                                class="w-20 h-20 md:w-32 md:h-32 text-cyan-400 relative z-10 animate-pulse"></i>
+                            <p class="mt-8 text-[10px] md:text-sm tracking-[0.5em] text-cyan-500 font-bold uppercase">
+                                System Active</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-32 bg-white/5 px-4">
+        <div class="max-w-7xl mx-auto text-center mb-20 scroll-reveal">
+            <h2 class="text-4xl md:text-6xl font-bold tracking-tighter mb-4">THE ECOSYSTEM</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Scaling intelligence across every banking endpoint.</p>
+        </div>
+
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <div class="glass p-10 hover:border-cyan-500/50 transition-all group scroll-reveal">
+                <i data-lucide="bar-chart-3"
+                    class="w-12 h-12 text-cyan-400 mb-8 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-2xl font-bold mb-4">Data Visualization</h3>
+                <p class="text-gray-500">Transforming billions of data points from Finacle into tactical heatmaps and
+                    trend analysis.</p>
+            </div>
+            <!-- Card 2 -->
+            <div class="glass p-10 hover:border-purple-500/50 transition-all group scroll-reveal">
+                <i data-lucide="workflow"
+                    class="w-12 h-12 text-purple-400 mb-8 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-2xl font-bold mb-4">Task Automation</h3>
+                <p class="text-gray-500">Automating complex banking workflows, from document verification to credit risk
+                    assessment.</p>
+            </div>
+            <!-- Card 3 -->
+            <div class="glass p-10 hover:border-white transition-all group scroll-reveal">
+                <i data-lucide="server"
+                    class="w-12 h-12 text-white mb-8 group-hover:scale-110 transition-transform"></i>
+                <h3 class="text-2xl font-bold mb-4">On-Prem Sovereignty</h3>
+                <p class="text-gray-500">Future-proof architecture designed to reside within your bank's physical and
+                    digital firewall.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Prompt -->
+    <section class="py-32 px-4">
+        <div class="max-w-4xl mx-auto glass p-8 md:p-16 text-center scroll-reveal overflow-hidden relative">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-cyan-500/20 rounded-full blur-[80px]"></div>
+            <h2 class="text-3xl md:text-5xl font-bold mb-8 relative z-10">READY TO CONVERSE?</h2>
+            <p class="text-gray-400 mb-10 relative z-10 text-sm md:text-base">Experience the intelligence of Abiba
+                firsthand. Secure,
+                intuitive, and remarkably fast.</p>
+            <button onclick="window.location.href='chat.html'"
+                class="w-full sm:w-auto bg-cyan-500 text-black px-12 py-5 rounded-full font-bold text-lg hover:bg-cyan-400 transition-colors shadow-[0_0_30px_rgba(6,182,212,0.5)]">
+                LAUNCH ABIBA CHAT
+            </button>
+        </div>
+    </section>
+
+    <!-- Chat Modal -->
+    <div id="chatModal"
+        class="fixed inset-0 z-[100] hidden bg-black/90 flex items-center justify-center p-4 backdrop-blur-xl">
+        <div class="glass w-full max-w-4xl h-[80vh] flex flex-col overflow-hidden relative">
+            <!-- Header -->
+            <div class="p-6 border-b border-white/10 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div
+                        class="w-10 h-10 rounded-full bg-gradient-to-tr from-cyan-500 to-purple-500 flex items-center justify-center animate-pulse">
+                        <i data-lucide="brain-circuit" class="w-6 h-6 text-white text-xs"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold">ABIBA NEURO-CORE</h3>
+                        <span class="text-[10px] text-cyan-500 tracking-widest uppercase font-bold">Encrypted Connection
+                            Active</span>
+                    </div>
+                </div>
+                <button onclick="closeChat()" class="p-2 hover:bg-white/10 rounded-full transition-colors">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+
+            <!-- Messages -->
+            <div id="chatMessages" class="flex-1 overflow-y-auto p-8 space-y-6">
+                <!-- Abiba Welcome -->
+                <div class="flex items-start space-x-4">
+                    <div
+                        class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                        <i data-lucide="bot" class="w-4 h-4 text-cyan-400"></i>
+                    </div>
+                    <div class="glass p-4 max-w-[80%] rounded-tl-none">
+                        <p class="text-gray-200 text-sm leading-relaxed">
+                            Connection established. I am Abiba, the neuro-engine for your financial ecosystem. How can I
+                            assist you with your banking operations, data visualizations, or task automation today?
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Input -->
+            <div class="p-6 border-t border-white/10 bg-white/5">
+                <div class="relative flex items-center">
+                    <input type="text" id="chatInput" placeholder="Command Abiba..."
+                        class="w-full bg-black/40 border border-white/10 rounded-full py-4 px-6 focus:outline-none focus:border-cyan-500/50 text-sm transition-all pr-24">
+                    <div class="absolute right-2 flex space-x-2">
+                        <button class="p-2 text-gray-400 hover:text-white"><i data-lucide="mic"
+                                class="w-5 h-5"></i></button>
+                        <button onclick="sendMessage()"
+                            class="bg-cyan-500 text-black px-4 py-2 rounded-full font-bold text-xs hover:bg-cyan-400 transition-colors">SEND</button>
+                    </div>
+                </div>
+                <p class="mt-3 text-[10px] text-center text-gray-600 uppercase tracking-widest font-medium">System
+                    strictly for bank personnel only</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-20 border-t border-white/10 px-4">
+        <div
+            class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 text-gray-600 text-sm">
+            <div class="flex items-center space-x-2">
+                <div class="w-6 h-6 rounded-full bg-white/10"></div>
+                <span class="font-bold text-white tracking-widest">ABIBA</span>
+            </div>
+            <div class="flex space-x-12">
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Infrastructure</a>
+                <a href="#" class="hover:text-white transition-colors">Documentation</a>
+            </div>
+            <div class="text-xs tracking-widest uppercase">
+                &copy; 2025 ABIBA ECOSYSTEMS. ALL RIGHTS RESERVED.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.1
+            });
+        });
+
+        // Sticky Nav Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav div');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2');
+                nav.classList.remove('py-4');
+            } else {
+                nav.classList.add('py-4');
+                nav.classList.remove('py-2');
+            }
+        });
+
+        // Reveal Animations
+        document.querySelectorAll('.scroll-reveal').forEach((el) => {
+            gsap.to(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                    toggleActions: "play none none none"
+                },
+                opacity: 1,
+                y: 0,
+                duration: 1.2,
+                ease: "power4.out"
+            });
+        });
+
+        // Hover Effect on Hero Button
+        const heroBtn = document.querySelector('button');
+        heroBtn.addEventListener('mouseenter', () => {
+            gsap.to(cursor, { scale: 4, duration: 0.3 });
+        });
+        heroBtn.addEventListener('mouseleave', () => {
+            gsap.to(cursor, { scale: 1, duration: 0.3 });
+        });
+
+        // Chat Logic
+        const chatModal = document.getElementById('chatModal');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+
+        function openChat() {
+            chatModal.classList.remove('hidden');
+            gsap.from("#chatModal div", { scale: 0.9, opacity: 0, duration: 0.5, ease: "power4.out" });
+        }
+
+        function closeChat() {
+            gsap.to("#chatModal div", {
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.3,
+                ease: "power4.in",
+                onComplete: () => chatModal.classList.add('hidden')
+            });
+        }
+
+        function addMessage(text, isUser = false) {
+            const div = document.createElement('div');
+            div.className = `flex items-start space-x-4 ${isUser ? 'flex-row-reverse space-x-reverse' : ''}`;
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
+                    <i data-lucide="${isUser ? 'user' : 'bot'}" class="w-4 h-4 ${isUser ? 'text-white' : 'text-cyan-400'}"></i>
+                </div>
+                <div class="glass p-4 max-w-[80%] ${isUser ? 'rounded-tr-none' : 'rounded-tl-none'}">
+                    <p class="text-gray-200 text-sm leading-relaxed">${text}</p>
+                </div>
+            `;
+            chatMessages.appendChild(div);
+            lucide.createIcons();
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            gsap.from(div, { y: 20, opacity: 0, duration: 0.4 });
+        }
+
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (!text) return;
+
+            addMessage(text, true);
+            chatInput.value = '';
+
+            // Simulated Response
+            setTimeout(() => {
+                const response = getAbibaResponse(text);
+                addMessage(response, false);
+            }, 1000);
+        }
+
+        function getAbibaResponse(input) {
+            const lowerInput = input.toLowerCase();
+            if (lowerInput.includes('who are you')) return "I am Abiba, the smartest financial AI ecosystem. I synthesize complex banking data into actionable insights and automate workflows for modern financial institutions.";
+            if (lowerInput.includes('visualize')) return "Initiating data visualization sequence... Pulling current NPA trends and asset distributions from the Finacle endpoint. (Simulation Active)";
+            if (lowerInput.includes('secure')) return "Abiba operates on a multi-layer security protocol. Our architecture supports on-prem deployment to ensure total data sovereignty.";
+            return "Command processed. How else can I assist with your financial intelligence today?";
+        }
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
+</body>
+
+</html>
