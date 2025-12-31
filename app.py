@@ -1,7 +1,7 @@
 import os
 import logging
 from datetime import datetime, timedelta
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from groq import Groq
 from dotenv import load_dotenv
@@ -19,6 +19,25 @@ logger = logging.getLogger("Abiba")
 
 app = Flask(__name__)
 CORS(app)
+
+# --- Static File Routing ---
+@app.route('/')
+def serve_index():
+    return send_from_directory('.', 'index.html')
+
+@app.route('/chat.html')
+def serve_chat():
+    return send_from_directory('.', 'chat.html')
+
+@app.route('/logs.html')
+def serve_logs():
+    return send_from_directory('.', 'logs.html')
+
+@app.route('/security.js')
+def serve_security():
+    return send_from_directory('.', 'security.js')
+
+# --- API Endpoints ---
 
 # Initialize Groq Client
 groq_api_key = os.getenv("GROQ_API_KEY")
