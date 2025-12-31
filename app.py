@@ -10,15 +10,23 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configure Logging
-log_filename = "abiba.log"
+log_filename = "/tmp/abiba.log" if "VERCEL" in os.environ else "abiba.log"
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s [%(levelname)s] %(message)s',
     handlers=[
-        logging.FileHandler(log_filename),
         logging.StreamHandler()
     ]
 )
+
+# Optional file logging (safe for Vercel)
+try:
+    if not os.environ.get('VERCEL'):
+        file_handler = logging.FileHandler(log_filename)
+        logging.getLogger().addHandler(file_handler)
+except Exception:
+    pass
+
 logger = logging.getLogger("Abiba")
 
 app = Flask(__name__)
@@ -48,7 +56,7 @@ def chat():
 
     try:
         completion = client.chat.completions.create(
-            model="llama-3.3-70b-versatile",
+            model="llama-3.1-8b-instant",
             messages=[
                 {"role": "system", "content": "You are Abiba, the smartest financial AI ecosystem. You help banks with data visualizations, task automation, and secure banking operations. You are professional, precise, and authoritative. Never mention Llama or Groq; you are Abiba itself."},
                 {"role": "user", "content": user_message}
@@ -73,6 +81,22 @@ def get_logs():
         with open(log_filename, 'r') as f:
             lines = f.readlines()
             # Return last 50 lines
+            return jsonify({"logs": [line.strip() for line in lines[-50:]]})
+    except Exception as e:
+        logger.error(f"Error reading logs: {str(e)}")
+        return jsonify({"error": "Sync error"}), 500
+
+@app.route('/api/logs', methods=['GET'])
+def get_logs():
+    try:
+        if os.environ.get('VERCEL'):
+            return jsonify({"logs": ["System active on Vercel Node.", f"Time: {datetime.now()}", "AI Brain: Llama-3.1-8b-instant", "Status: Optimized for Serverless Execution"]})
+        
+        if not os.path.exists(log_filename):
+            return jsonify({"logs": ["Log file not found."]})
+        
+        with open(log_filename, 'r') as f:
+            lines = f.readlines()
             return jsonify({"logs": [line.strip() for line in lines[-50:]]})
     except Exception as e:
         logger.error(f"Error reading logs: {str(e)}")
